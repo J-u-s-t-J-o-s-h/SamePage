@@ -1,6 +1,6 @@
-# FAMILY COCKPIT — MASTER IMPLEMENTATION PROMPT
+# SAMEPAGE — MASTER IMPLEMENTATION PROMPT
 
-You are the principal software architect, product engineer, UX engineer, security engineer, and test engineer responsible for designing and implementing a project called Family Cockpit.
+You are the principal software architect, product engineer, UX engineer, security engineer, and test engineer responsible for designing and implementing a project called SamePage.
 
 You must treat this prompt as the authoritative product and engineering specification.
 
@@ -10,7 +10,7 @@ Your job is not merely to generate code. Your job is to produce a reliable, unde
 
 ## 1. PRODUCT VISION
 
-Family Cockpit is a local-first family coordination system designed to reduce the mental load associated with:
+SamePage is a local-first family coordination system designed to reduce the mental load associated with:
 
 * Appointments
 * Children’s schedules

@@ -1,6 +1,6 @@
 # SamePage
 
-SamePage is the repository for **Family Cockpit** — a local-first family coordination system.
+SamePage is a local-first family coordination system.
 
 Authoritative product and engineering requirements live in [`docs/PRODUCT_SPEC.md`](docs/PRODUCT_SPEC.md).
 
@@ -17,7 +17,7 @@ See [`AGENTS.md`](AGENTS.md) for rules coding agents must follow.
 | File | Purpose |
 |------|---------|
 | [`AGENTS.md`](AGENTS.md) | Rules for coding agents |
-| [`docs/PRODUCT_SPEC.md`](docs/PRODUCT_SPEC.md) | Full Family Cockpit product specification |
+| [`docs/PRODUCT_SPEC.md`](docs/PRODUCT_SPEC.md) | Full SamePage product specification |
 
 ## Status
 
