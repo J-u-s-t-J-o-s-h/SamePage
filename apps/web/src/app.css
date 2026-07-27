@@ -1,0 +1,251 @@
+:root {
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --surface-2: #eef0f7;
+  --text: #1b1f2a;
+  --text-muted: #5b6070;
+  --primary: #4f46e5;
+  --good: #1a7f4b;
+  --good-bg: #e4f5ea;
+  --bad: #b42318;
+  --bad-bg: #fdeceb;
+  --neutral: #4a4f60;
+  --neutral-bg: #e9ebf2;
+  --border: #dfe2ec;
+  --radius: 14px;
+  --shadow: 0 1px 2px rgba(20, 23, 33, 0.06), 0 4px 16px rgba(20, 23, 33, 0.05);
+  --touch: 48px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #10131c;
+    --surface: #181c28;
+    --surface-2: #1f2434;
+    --text: #f2f4fa;
+    --text-muted: #a6adc0;
+    --primary: #8b87f5;
+    --good: #6ee7a8;
+    --good-bg: #133527;
+    --bad: #ffab9e;
+    --bad-bg: #3a1c1a;
+    --neutral: #c3c8d6;
+    --neutral-bg: #242a3b;
+    --border: #2a3042;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 20px rgba(0, 0, 0, 0.35);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: max(env(safe-area-inset-top), 16px) 16px 16px;
+}
+
+.app__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 8px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand__mark {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+}
+
+.brand__name {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.status__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: 0 0 auto;
+}
+
+.status--good {
+  color: var(--good);
+  background: var(--good-bg);
+}
+.status--bad {
+  color: var(--bad);
+  background: var(--bad-bg);
+}
+.status--neutral {
+  color: var(--neutral);
+  background: var(--neutral-bg);
+}
+
+.app__main {
+  flex: 1;
+}
+
+.intro {
+  padding: 24px 4px 8px;
+}
+
+.intro__title {
+  font-size: clamp(26px, 7vw, 34px);
+  line-height: 1.15;
+  margin: 0 0 12px;
+}
+
+.intro__lead {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 16px;
+}
+
+.actions {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 560px) {
+  .actions {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: var(--touch);
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.card__icon {
+  font-size: 26px;
+  line-height: 1;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--surface-2);
+  flex: 0 0 auto;
+}
+
+.card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.card__title {
+  margin: 0 0 2px;
+  font-size: 17px;
+}
+
+.card__desc {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.card__badge {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--neutral);
+  background: var(--neutral-bg);
+  padding: 3px 8px;
+  border-radius: 999px;
+  flex: 0 0 auto;
+}
+
+.app__footer {
+  padding: 24px 4px 8px;
+  color: var(--text-muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

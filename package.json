@@ -1,0 +1,42 @@
+{
+  "name": "samepage",
+  "version": "0.0.0",
+  "private": true,
+  "description": "SamePage — a local-first, privacy-first family coordination system.",
+  "type": "module",
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel -r run dev",
+    "build": "pnpm -r run build",
+    "typecheck": "pnpm -r run typecheck",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "e2e:server": "pnpm --filter @samepage/web run build && NODE_ENV=production PORT=8788 tsx apps/api/src/index.ts",
+    "start": "NODE_ENV=production tsx apps/api/src/index.ts",
+    "check:secrets": "node scripts/check-secrets.mjs",
+    "verify": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm check:secrets && pnpm test && pnpm build && pnpm test:e2e"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@playwright/test": "1.55.0",
+    "@types/node": "^22.10.2",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.19.0",
+    "vitest": "^3.0.0"
+  }
+}
