@@ -44,7 +44,10 @@ this document before any remote-access code is written.
   or contacts, or be manipulated by content in a captured image. _Controls:_
   strict schema validation of every AI result; AI produces **proposals only**;
   human approval before authoritative records; negation respected; nothing
-  invented; provenance retained.
+  invented; provenance retained. _These controls are realised in **Phase 5**,
+  when AI proposal records are introduced. Phase 0 implements only the validated
+  `AiResult` envelope and a deterministic fake provider — the proposal / approval
+  enforcement does not exist yet._
 - **Data loss / corruption.** Outage or disk failure destroys work. _Controls:_
   originals always preserved even when processing fails; offline changes queued,
   not lost (Phase 8); tested backup & restore (Phase 10); explicit, non-silent
@@ -63,10 +66,17 @@ local-first defaults; no secrets in code; secret-scanning check; no external
 network calls (the default AI provider is a local deterministic fake); no
 analytics/telemetry.
 
-**Not yet implemented (by design, later phases):** authentication & sessions,
-household isolation enforcement, CSRF, rate limiting, upload hardening, offline
-sync & conflict handling, and secure remote access. These are tracked to their
-phases and this document is updated as each lands.
+**Not yet implemented (by design, later phases):** authentication & sessions and
+server-side authorization (Phase 1); household-isolation enforcement and the
+append-only audit / activity history (Phase 1); CSRF and rate limiting (Phase 1);
+upload hardening (Phase 3); the **AI proposal → human approval → authoritative
+record** enforcement that keeps model output out of authoritative tables
+(introduced with AI proposal records in **Phase 5**); offline sync & conflict
+handling (Phase 8); and secure remote access (Phase 9). Until Phase 5 the AI seam
+is only a validated result envelope (`AiResult`) backed by a deterministic fake
+provider; the proposal / approval control above is a **design commitment, not an
+implemented safeguard**. These are tracked to their phases and this document is
+updated as each lands.
 
 ## Explicit non-goals / rules
 

@@ -12,8 +12,11 @@ It is kept in sync with the code; where something is not built yet, it says so.
   structure; a human approves before authoritative records are created.
 - **Simplest thing that works.** A modular monolith, not microservices. New
   infrastructure is added only when a documented need justifies it.
-- **Never trust model output.** Every AI result is schema-validated and routed
-  through human review; it never writes directly to authoritative tables.
+- **Never trust model output.** Every AI result is schema-validated. Once AI
+  proposals are introduced (Phase 5), model output can reach an authoritative
+  record only through explicit human approval — never by writing to an
+  authoritative table directly. Phase 0 builds only the validated result
+  envelope, not that approval boundary.
 
 ## Stack (see ADR 0001)
 
@@ -138,15 +141,24 @@ sequenceDiagram
   API->>DB: create authoritative record(s) + activity event (who/when/source)
 ```
 
-Key invariants (enforced as each phase lands):
+Key invariants, each enforced only when the phase that introduces its data
+lands. **Phase 0 implements none of them yet — it lays the seams:**
 
+- **Household isolation** — every household-scoped query is scoped server-side,
+  never only in the UI. Established with persistence and authorization in
+  **Phase 1**.
+- **Audit / activity history** — who created, approved, or edited what, when, and
+  from which source is recorded append-only. Infrastructure lands in **Phase 1**.
 - The **original** capture is always preserved, even if downstream AI fails.
-- AI produces **proposals**; authoritative tasks/appointments/decisions/contacts
-  are only created by an explicit human approval, which is recorded with
-  provenance (who approved, when, from which source).
+  Lands with uploads in **Phase 3**.
 - Jobs are **idempotent**; duplicate submissions do not create duplicate
-  authoritative records.
-- Every household-scoped query enforces **household isolation** server-side.
+  authoritative records. Lands with the processing queue in **Phase 3**.
+- AI produces **proposals**, never authoritative records; a task, appointment,
+  decision, or contact is created only by an explicit human approval, recorded
+  with provenance (who approved, when, from which source). This
+  proposal-vs-approved boundary is realised when **AI proposal records are
+  introduced, in Phase 5**; Phase 1's schema only reserves a clean separation for
+  it and does not yet enforce it.
 
 ## Health & observability (Phase 0)
 
@@ -165,6 +177,10 @@ added as those subsystems come online.
   no secrets in code. A secret-scanning check (`pnpm check:secrets`) guards
   commits.
 - No family content, note bodies, transcriptions, or tokens are written to logs.
-- Authentication, session security, household isolation, CSRF, and rate limiting
-  are implemented starting in Phase 1; secure remote access is designed and
-  gated in Phase 9. See `threat-model.md`.
+- **Phase 1** establishes persistence, authentication and server-side
+  authorization, household-isolation enforcement, and the audit / activity-history
+  infrastructure; CSRF and rate limiting arrive with it. The **AI proposal →
+  approved-record** safety boundary is implemented when AI proposal records are
+  introduced (**Phase 5**); the Phase 1 schema is designed to preserve that
+  boundary cleanly but does not yet enforce it. Secure remote access is designed
+  and gated in **Phase 9**. See `threat-model.md`.

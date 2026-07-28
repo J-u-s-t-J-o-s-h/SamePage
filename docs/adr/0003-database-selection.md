@@ -3,6 +3,8 @@
 - **Status:** Accepted (Phase 0); first schema lands in Phase 1
 - **Date:** 2026-07-27
 - **Deciders:** SamePage maintainer
+- **External review:** Approved 2026-07-28 — keep PostgreSQL as the authoritative
+  database; do not introduce SQLite as an alternate production path.
 
 ## Context
 
@@ -39,6 +41,15 @@ Use **PostgreSQL** as the single production database.
 Phase 0 does **not** stand up the database: the app shell and its tests are
 hermetic and require no external services. This ADR fixes the direction so
 Phase 1 can implement it without rework.
+
+**Phase boundaries.** The **Phase 1** schema establishes persistence,
+authorization, server-side household isolation, and the append-only
+activity / audit history. **AI proposal tables — and the enforced boundary that
+keeps AI output out of authoritative records until a human approves it — are
+introduced in Phase 5**, when AI proposals first exist. Phase 1's design reserves
+a clean separation (distinct tables and states for proposals vs approved records)
+so that boundary can be added without rework, but it does **not** implement or
+claim that enforcement early.
 
 ## Consequences
 

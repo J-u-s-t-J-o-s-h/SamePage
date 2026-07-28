@@ -42,9 +42,14 @@ application is coded against — never a concrete model:
   implement the same interface and reuse the contract.
 
 Only the interface + envelope + fake + contract test are built now. Real
-adapters, and the proposal/review pipeline that keeps AI output out of
-authoritative tables, arrive in their respective phases (OCR: 3, speech: 4,
-interpretation: 5). Building the seam now avoids reworking call sites later.
+adapters arrive in their respective phases (OCR: 3, speech: 4, interpretation:
+5). The **proposal-vs-authoritative-record boundary** — the pipeline that keeps
+AI output out of authoritative tables until a human approves it — is realised in
+**Phase 5**, when AI proposal records first exist. The earlier database design
+(Phase 1) reserves a clean separation for it but does **not** implement that
+enforcement, and Phase 0 ships neither: today the seam is only the validated
+`AiResult` envelope and the deterministic fake. Building the seam now avoids
+reworking call sites later.
 
 ## Consequences
 

@@ -3,6 +3,9 @@
 - **Status:** Accepted (Phase 0) — **No vector database now**
 - **Date:** 2026-07-27
 - **Deciders:** SamePage maintainer
+- **External review:** Approved 2026-07-28 — do not add a vector database or
+  embeddings until a documented retrieval use case shows relational + PostgreSQL
+  full-text search are insufficient.
 
 ## Context
 

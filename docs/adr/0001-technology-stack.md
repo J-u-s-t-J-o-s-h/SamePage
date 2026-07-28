@@ -3,6 +3,9 @@
 - **Status:** Accepted (Phase 0)
 - **Date:** 2026-07-27
 - **Deciders:** SamePage maintainer
+- **External review:** Approved 2026-07-28 — keep the TypeScript modular monolith
+  (Vite/React + Hono); do not switch to Next.js + Python/FastAPI unless later
+  evidence shows a concrete need for an in-process Python service.
 
 ## Context
 
