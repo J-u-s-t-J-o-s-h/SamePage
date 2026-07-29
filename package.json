@@ -9,7 +9,8 @@
     "node": ">=20.11.0"
   },
   "scripts": {
-    "dev": "pnpm --parallel -r run dev",
+    "dev": "pnpm --filter @samepage/web --filter @samepage/api --parallel run dev",
+    "wizard": "pnpm --filter @samepage/setup-wizard run dev",
     "build": "pnpm -r run build",
     "typecheck": "pnpm -r run typecheck",
     "lint": "eslint .",
