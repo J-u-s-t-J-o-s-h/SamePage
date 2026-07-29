@@ -1,0 +1,31 @@
+# Local development / home-server infrastructure for SamePage.
+#
+# Phase 0 does not require any of these services to build or test the app.
+# PostgreSQL is defined here for Phase 1 onward. Bring it up with:
+#   docker compose up -d db
+#
+# All data stays on household-owned hardware (a named local volume). No cloud
+# services are involved.
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: samepage-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: samepage
+      POSTGRES_PASSWORD: samepage
+      POSTGRES_DB: samepage
+    ports:
+      # Exposed on localhost only.
+      - '127.0.0.1:5432:5432'
+    volumes:
+      - samepage-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U samepage -d samepage']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  samepage-db-data:
+    name: samepage-db-data

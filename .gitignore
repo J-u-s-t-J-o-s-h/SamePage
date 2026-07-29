@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+build/
+*.tsbuildinfo
+
+# Test / tooling output
+coverage/
+playwright-report/
+test-results/
+.vitest/
+
+# Local environment & secrets (NEVER commit real secrets)
+.env
+.env.*
+!.env.example
+
+# Local household data (local-first storage lives outside version control)
+data/
+uploads/
+*.sqlite
+*.sqlite3
+*.db
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.log
+npm-debug.log*
+pnpm-debug.log*
